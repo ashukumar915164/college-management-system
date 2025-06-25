@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Course List</h2>
+<a href="{% url 'course_create' %}">Add New Course</a>
+<ul>
+  {% for course in courses %}
+    <li>
+      {{ course.name }} ({{ course.code }}) |
+      <a href="{% url 'course_update' course.pk %}">Edit</a> |
+      <a href="{% url 'course_delete' course.pk %}">Delete</a>
+    </li>
+  {% endfor %}
+</ul>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f8fb;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .add-button:hover {
+      background-color: #0056b3;
+    }
+
+    ul.course-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul.course-list li {
+      background-color: #eef4fc;
+      margin: 10px 0;
+      padding: 15px 20px;
+      border-left: 5px solid #007bff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+      transition: transform 0.2s;
+    }
+
+    ul.course-list li:hover {
+      transform: scale(1.02);
+    }
+
+    .course-info {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .actions a {
+      margin-left: 10px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .actions .edit {
+      background-color: #28a745;
+    }
+
+    .actions .delete {
+      background-color: #dc3545;
+    }
+
+    .actions a:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📚 Course List</h2>
+    <a class="add-button" href="{% url 'course_create' %}">➕ Add New Course</a>
+    <ul class="course-list">
+      {% for course in courses %}
+      <li>
+        <div class="course-info">
+          <strong>{{ course.name }}</strong> ({{ course.code }})
+        </div>
+        <div class="actions">
+          <a class="edit" href="{% url 'course_update' course.pk %}">✏️ Edit</a>
+          <a class="delete" href="{% url 'course_delete' course.pk %}">🗑️ Delete</a>
+        </div>
+      </li>
+      {% empty %}
+      <li>No courses available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
