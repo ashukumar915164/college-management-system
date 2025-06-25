@@ -1,0 +1,97 @@
+{% extends 'home/base.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block header %}{% endblock %}
+
+<p>Welcome, Teacher. You can manage your classes and assignments here.</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block content %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@latest"></script> <!-- Lucide Icons -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .glass-card {
+      background: rgba(101, 190, 144, 0.827);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(20, 129, 188, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 40px rgba(216, 121, 180, 0.2);
+    }
+    
+  </style>
+</head>
+<body class="bg-gradient-to-tr from-[#0f2027] via-[#203a43] via-[#2c5364] to-[#0f2027] min-h-screen text-info font-sans">
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white bg-opacity-10 backdrop-blur-lg shadow-2xl p-6 hidden md:block">
+      <h2 class="text-3xl font-extrabold text-black mb-8">👨‍🏫 Teacher Panel</h2>
+      <nav class="space-y-4">
+        <a href="#" class="flex items-center gap-3 py-2 px-4 bg-emerald-700 rounded-xl hover:bg-emerald-800 transition"><i data-lucide="layout-dashboard"></i>Dashboard</a>
+        <a href="{% url 'course_create' %}" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="users"></i>My Classes</a>
+        <a href="{% url 'attendance_create' %}" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="calendar-check"></i>Attendance</a>
+        <a href="#" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="file-bar-chart-2"></i>Gradebook</a>
+        <a href="{% url 'notice_list' %}" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="bell"></i>Notices</a>
+        <a href="{% url 'setting_view' %}" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="settings"></i>Settings</a>
+        <a href="{% url 'logout' %}" class="flex items-center gap-3 py-2 px-4 hover:bg-white hover:text-black rounded-xl transition"><i data-lucide="logout"></i>Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+
+      <!-- Top Navbar -->
+      <header class="p-5 flex justify-between items-center bg-info bg-opacity-10 backdrop-blur-lg shadow-lg">
+        <h1 class="text-2xl font-bold">Welcome, <span class="text-emerald-200">Teacher Name</span> 👋</h1>
+        <div class="flex items-center gap-4">
+          <input type="text" placeholder="Search..." class="px-4 py-2 rounded-lg text-black shadow-inner" />
+          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold shadow-md">T</div>
+        </div>
+      </header>
+
+      <!-- Dashboard Cards -->
+      <main class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-3"><i data-lucide="users" class="w-8 h-8 text-yellow-400"></i></div>
+          <h3 class="text-lg font-semibold mb-1"><a href="{% url 'subject_list' %}">My Classes</a></h3>
+          <p class="text-3xl font-bold">4</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-3"><i data-lucide="calendar-check" class="w-8 h-8 text-green-400"></i></div>
+          <h3 class="text-lg font-semibold mb-1">Attendance</h3>
+          <p class="text-3xl font-bold">96%</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-3"><i data-lucide="file-bar-chart-2" class="w-8 h-8 text-pink-400"></i></div>
+          <h3 class="text-lg font-semibold mb-1">Gradebook</h3>
+          <p class="text-3xl font-bold">Updated</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-3"><i data-lucide="bell" class="w-8 h-8 text-indigo-300"></i></div>
+          <h3 class="text-lg font-semibold mb-1"><a href="{% url 'notice_list' %}">Notices</a></h3>
+          <p class="text-3xl font-bold">5</p>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>{% endblock %}
+</html>
+
+
